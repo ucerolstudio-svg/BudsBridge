@@ -4,7 +4,7 @@ Galaxy Buds3 Pro’yu Mac ve telefon arasında kullanmak için açık kaynak, ye
 
 **Gerçek cihazda doğrulanan kurulum: Galaxy Buds3 Pro + Galaxy S25+ + Apple Silicon Mac.** Uygulama belirli bir kişiye veya telefona kilitli değildir; Mac’inde eşleştirilmiş kulaklığı seçerek çalışır. Diğer telefon, kulaklık, firmware ve macOS birleşimlerinin tamamında çalışacağı garanti edilmez. Ayrıntılar: [Uyumluluk](docs/COMPATIBILITY.md).
 
-[v0.2.0-beta.1 indir](https://github.com/ucerolstudio-svg/BudsBridge/releases/tag/v0.2.0-beta.1) · [Tüm sürümler](https://github.com/ucerolstudio-svg/BudsBridge/releases) · [Kaynaktan derle](#kaynaktan-derleme) · [Protokol notları](docs/PROTOCOL.md) · [Katkıda bulun](CONTRIBUTING.md) · [Gizlilik](PRIVACY.md) · [Hukuki açıklamalar](LEGAL.md)
+[Kurulum paketini indir](https://github.com/ucerolstudio-svg/BudsBridge/releases) · [Tüm sürümler](https://github.com/ucerolstudio-svg/BudsBridge/releases) · [Kaynaktan derle](#kaynaktan-derleme) · [Protokol notları](docs/PROTOCOL.md) · [Katkıda bulun](CONTRIBUTING.md) · [Gizlilik](PRIVACY.md) · [Hukuki açıklamalar](LEGAL.md)
 
 > **English:** BudsBridge is an experimental native macOS 14+ app for Galaxy Buds3 Pro multipoint coexistence, returning Mac audio after phone calls, and earbud controls. Tested with Buds3 Pro, Galaxy S25+, and an Apple Silicon Mac, including the real small WidgetKit widget and its battery data. It needs no Android helper, Wi-Fi service, or USB connection. iPhone supports ordinary Bluetooth audio, but BudsBridge switching with iPhone is untested. Current binaries are arm64, ad hoc signed, and not notarized. This is a beta pre-release.
 
@@ -35,16 +35,19 @@ Telefonuna ek BudsBridge uygulaması kurman, USB kablosu bağlaman veya cihazlar
 
 ## Hazır uygulamayı kurma
 
-1. [v0.2.0-beta.1 ön sürümünün](https://github.com/ucerolstudio-svg/BudsBridge/releases/tag/v0.2.0-beta.1) varlıklarından Apple Silicon uygulama arşivini indir ve aç. Yeni paketler için [tüm sürümleri](https://github.com/ucerolstudio-svg/BudsBridge/releases) kontrol edebilirsin. Hazır ikili yoksa aşağıdaki kaynak derleme adımlarını kullan.
-2. `BudsBridge.app` dosyasını Finder’dan **Uygulamalar / Applications** klasörüne kopyala. Widget kaydının tutarlı kalması için uygulamayı bu konumda tut.
-3. Uygulamayı aç. Menü çubuğunda kulaklık simgesi görünür; pencereyi kapatmak uygulamayı sonlandırmaz.
-4. Bluetooth erişim isteğini kabul et. İzin daha önce reddedildiyse **Sistem Ayarları → Gizlilik ve Güvenlik → Bluetooth** altında BudsBridge’i etkinleştir, ardından uygulamadaki **Bluetooth izni / yenile** düğmesini kullan.
+1. [Releases](https://github.com/ucerolstudio-svg/BudsBridge/releases) bölümünden **BudsBridge-0.2.1-beta.1-macos-arm64.dmg** dosyasını indir ve aç.
+2. **BudsBridge.app** simgesini yanındaki **Applications** klasörüne sürükle. Widget kaydı için uygulamayı bu konumda tut.
+3. Applications içinden aç ve Bluetooth erişimine izin ver. Açılan **İlk kurulum · 3 adım** rehberini izle.
+4. Buds3 Pro’yu Mac ve telefona eşleştir, uygulamadaki cihaz listesinden seç ve **Mac’e bağlan ve hazırla** düğmesine bas. Bu işlem otomatik uygulamayı ve arama sonrası Mac’e dönüşü açar.
+5. Kulaklıktan protokol onayı geldikten sonra telefondan Buds’a yeniden bağlan. İki cihazda da bağlı göründüğünü kontrol edip bir arama dene.
+
+ZIP paketini tercih edersen arşivi açıp uygulamayı Applications’a taşıman yeterli. Telefon uygulaması veya Terminal komutu gerekmez. Kısa Türkçe/İngilizce rehber DMG’nin içinde ve [burada](docs/GETTING_STARTED.txt) bulunur. Menü çubuğu uygulaması açık kalmalıdır; pencereyi kapatmak uygulamadan çıkmaz.
 
 ### İlk açılışta macOS engellerse
 
 Bu sürüm **ad hoc imzalıdır**; Apple Developer ID ile imzalanmış ve noterlenmiş bir dağıtım değildir. İndirdiğin dosyanın bu deponun sürüm sayfasından geldiğini kontrol et. Geliştirici doğrulanamadığı için açılış engellenirse uygulamayı bir kez açmayı denedikten sonra **Sistem Ayarları → Gizlilik ve Güvenlik → Güvenlik → Yine de Aç / Open Anyway** yolunu kullan ve uygulama için açılışı onayla. Menü adları macOS sürümüne göre değişebilir. [Apple’ın açıklaması](https://support.apple.com/tr-tr/102445).
 
-## İlk bağlantı ve arama testi
+## Ayrıntılı bağlantı ve arama testi
 
 1. Buds’ı telefonun Bluetooth ayarlarından eşleştir. Ardından Mac’in **Sistem Ayarları → Bluetooth** bölümünden de eşleştir ve Mac’e bağla. Bu sırada telefon bağlantısının kesilmesi mümkündür.
 2. BudsBridge’i aç; **Cihaz** listesinden kendi kulaklığını seç. Gerekirse **Mac’e bağlan** düğmesini kullan. Kulaklık listede yoksa izinleri ve Bluetooth eşleşmesini kontrol edip **Bluetooth izni / yenile** düğmesine bas.

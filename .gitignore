@@ -8,3 +8,6 @@ work/
 *.apk
 *.pcap
 *.btsnoop
+
+# Local candidate builds and keys
+build/
