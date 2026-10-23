@@ -1,0 +1,10 @@
+.build/
+.manual-build/
+.test-build/
+dist/
+.DS_Store
+work/
+*.log
+*.apk
+*.pcap
+*.btsnoop
