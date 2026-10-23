@@ -1,0 +1,26 @@
+BudsBridge — Hızlı kurulum / Quick setup
+
+1. BudsBridge.app simgesini Applications klasörüne sürükle.
+2. Applications içinden aç; Bluetooth erişimine izin ver.
+3. Açılan 3 adımlı rehberi izle. Buds3 Pro’yu Mac ve telefona eşleştir;
+   kulaklığını seç ve “Mac’e bağlan ve hazırla” düğmesine bas.
+4. Protokol onayından sonra telefonda Buds’a tekrar bağlan.
+   İki cihaz da bağlı olmalı. Bir aramayla geçişi doğrula.
+5. Masaüstü → sağ tık → Widget’ları Düzenle → BudsBridge / Buds3 Pro.
+
+macOS geliştiriciyi doğrulayamazsa: uygulamayı bir kez açmayı dene;
+Sistem Ayarları → Gizlilik ve Güvenlik → Yine de Aç.
+Bu beta Apple Developer ID ile imzalı veya noter onaylı değildir.
+Güvenlik ayarlarını genel olarak kapatman veya Terminal komutu çalıştırman gerekmez.
+Apple Silicon Mac, macOS 14+, Galaxy Buds3 Pro. Diğer kombinasyonlar test edilmedi.
+Telefon uygulaması, USB bağlantısı veya Wi-Fi gerekmez.
+
+English: Drag the app to Applications, open it there and allow Bluetooth.
+Follow the three-step setup guide, then reconnect the Buds from your phone.
+Both devices must show connected. Test a call before enabling unattended use.
+This beta is ad hoc signed, not notarized. If macOS blocks it, use the per-app
+Open Anyway option in System Settings → Privacy & Security.
+
+Source, updates, installation help and license:
+https://github.com/ucerolstudio-svg/BudsBridge
+GPL-3.0. No warranty. See LICENSE / LEGAL.md in the application resources.
