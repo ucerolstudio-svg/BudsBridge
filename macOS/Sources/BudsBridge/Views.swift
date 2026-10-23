@@ -6,6 +6,7 @@ import SwiftUI
 
 struct BridgeView: View {
     @ObservedObject var model: BridgeModel
+    @AppStorage("setup-guide-complete") private var setupComplete = false
     private let accent = Color(red: 0.28, green: 0.40, blue: 0.92)
     var body: some View {
         ScrollView {
@@ -30,6 +31,24 @@ struct BridgeView: View {
                     Label("Apple WidgetKit · Küçük", systemImage: "square.grid.2x2").font(.caption).foregroundStyle(.secondary)
                     Spacer()
                     Button("Widget’ı ekle") { NotificationCenter.default.post(name: .widgetHelp, object: nil) }.buttonStyle(.link)
+                }
+                if !setupComplete {
+                    VStack(alignment: .leading, spacing: 12) {
+                        Label("İlk kurulum · 3 adım", systemImage: "sparkles").font(.headline)
+                        Text("1 · Buds3 Pro’yu hem telefonun hem Mac’in Bluetooth ayarlarında eşleştir.").font(.callout)
+                        Button("Bluetooth ayarlarını aç") { model.bluetoothSettings() }.buttonStyle(.link)
+                        Text("2 · Aşağıdaki Cihaz listesinden kulaklığını seç, ardından hazırlamayı başlat.").font(.callout)
+                        Button("Mac’e bağlan ve hazırla") { model.beginSetup() }
+                            .buttonStyle(.borderedProminent)
+                            .disabled(model.selected?.supportedName != true || model.busy || model.preview)
+                        if model.busy { ProgressView().controlSize(.small) }
+                        Text(model.protocolStatus).font(.caption).foregroundStyle(.secondary)
+                        Text("3 · Protokol onayından sonra telefonda Buds’a yeniden bağlan. İki cihazda da bağlı göründüğünü kontrol et ve bir arama dene.").font(.callout)
+                        Text("Bu düğme otomatik uygulamayı ve arama sonrası Mac’e dönüşü açar. Telefonuna uygulama kurman gerekmez.").font(.caption).foregroundStyle(.secondary)
+                        Button("Rehberi kapat") { setupComplete = true }.buttonStyle(.link)
+                    }.card()
+                } else {
+                    Button("Kurulum rehberini göster") { setupComplete = false }.buttonStyle(.link)
                 }
                 VStack(alignment: .leading, spacing: 13) {
                     Label("Kulaklığın", systemImage: "earbuds").font(.headline)

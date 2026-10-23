@@ -191,6 +191,12 @@ final class BridgeModel: NSObject, ObservableObject, CBCentralManagerDelegate {
             self.refresh()
         }
     }
+    func beginSetup() {
+        guard !preview, !busy, selected?.supportedName == true else { return }
+        setReturnToMac(true)
+        setAutomatic(true)
+        if selected?.connected != true { connect() }
+    }
     func setAutomatic(_ enabled: Bool) {
         automatic = enabled; UserDefaults.standard.set(enabled, forKey: "automatic-smep")
         if enabled { gate.reset(); requestBluetooth(); scheduleAutomatic() }
