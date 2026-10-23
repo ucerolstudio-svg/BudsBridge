@@ -12,7 +12,7 @@ import tempfile
 import zipfile
 
 ROOT = Path(__file__).resolve().parent.parent
-VERSION = "0.2.0-beta.1"
+VERSION = "0.2.1-beta.1"
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--app", type=Path, default=ROOT / "dist/BudsBridge.app")
 parser.add_argument("--output", type=Path, default=ROOT / "dist/release")
@@ -20,8 +20,8 @@ args = parser.parse_args()
 app, dest = args.app.resolve(), args.output.resolve()
 with (app / "Contents/Info.plist").open("rb") as stream:
     info = plistlib.load(stream)
-if info.get("CFBundleIdentifier") != "dev.budsbridge.mac" or info.get("CFBundleShortVersionString") != "0.2.0":
-    raise SystemExit("Expected a BudsBridge 0.2.0 application bundle")
+if info.get("CFBundleIdentifier") != "dev.budsbridge.mac" or info.get("CFBundleShortVersionString") != "0.2.1":
+    raise SystemExit("Expected a BudsBridge 0.2.1 application bundle")
 subprocess.run(["codesign", "--verify", "--deep", "--strict", str(app)], check=True)
 arch = subprocess.check_output(["lipo", "-archs", str(app / "Contents/MacOS/BudsBridge")], text=True).strip()
 if arch not in ("arm64", "x86_64"):
@@ -41,8 +41,10 @@ subprocess.run(["ditto", "-c", "-k", "--norsrc", "--noextattr", "--keepParent", 
 with tempfile.TemporaryDirectory(prefix="budsbridge-verify-") as tmp:
     subprocess.run(["ditto", "-x", "-k", str(binary_zip), tmp], check=True)
     subprocess.run(["codesign", "--verify", "--deep", "--strict", str(Path(tmp) / "BudsBridge.app")], check=True)
+dmg = dest / f"BudsBridge-{VERSION}-macos-{arch}.dmg"
+subprocess.run(["bash", str(ROOT / "scripts/create-dmg.sh"), str(app), str(dmg), str(ROOT / "docs/GETTING_STARTED.txt")], check=True)
 checksums = []
-for path in (binary_zip, source_zip):
+for path in (binary_zip, source_zip, dmg):
     checksums.append(f"{hashlib.sha256(path.read_bytes()).hexdigest()}  {path.name}")
 (dest / "SHA256SUMS.txt").write_text("\n".join(checksums) + "\n")
 print(f"Packaged {len(set(files))} source files; app architecture: {arch}")

@@ -29,7 +29,7 @@ xcrun swiftc -sdk "$SDK" -target "$ARCH-apple-macosx14.0" -swift-version 5 -O \
   -Xlinker -e -Xlinker _NSExtensionMain \
   "$ROOT/macOS/Widget/BudsBridgeWidget.swift" -o "$EXT/Contents/MacOS/BudsBridgeWidget"
 cp "$ROOT/macOS/Widget/Info.plist" "$EXT/Contents/Info.plist"
-codesign --force --sign - --entitlements "$ROOT/macOS/Widget/Entitlements.plist" "$EXT"
-codesign --force --sign - "$APP"
+codesign --force --sign - --requirements '=designated => identifier "dev.budsbridge.mac.widget"' --entitlements "$ROOT/macOS/Widget/Entitlements.plist" "$EXT"
+codesign --force --sign - --requirements '=designated => identifier "dev.budsbridge.mac"' "$APP"
 codesign --verify --deep --strict "$APP"
 echo "Built: $APP"
